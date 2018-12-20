@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Leap Kasten &amp; Isabel Zamudio-Moore" />
+
+
+<title>Snapshot of Tropical Storms</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Final Project Title</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Blogpost</a>
+</li>
+<li>
+  <a href="more_info.html">More info</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Snapshot of Tropical Storms</h1>
+<h4 class="author"><em>Leap Kasten &amp; Isabel Zamudio-Moore</em></h4>
+<h4 class="date"><em>Last updated on 2018-12-20</em></h4>
+
+</div>
+
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set R Markdown chunk defaults:</span>
+knitr::opts_chunk$<span class="kw">set</span>(
+  <span class="dt">echo =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">FALSE</span>, <span class="dt">warning =</span> <span class="ot">FALSE</span>, 
+  <span class="dt">fig.width =</span> <span class="dv">16</span>/<span class="dv">2</span>, <span class="dt">fig.height =</span> <span class="dv">9</span>/<span class="dv">2</span>
+)</code></pre></div>
+<p><b> INTRODUCTION: </b></p>
+<p>There are many kinds of storms that draw their power from the wind. Tropical storms are among them. These storms, including hurricanes, are often associated with the damage caused by the waves they create. Hurricanes are wind-based funnel storms that form with low pressure and create storm clouds by picking up moisture from the ocean<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. We decided to investigate the extreme winds of tropical storms from 2000-2015 using NOAA hurricane data<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>we found on Kaggle.</p>
+<!--
+Loading Packages & Data
+-->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load Packages</span>
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(lubridate)
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(tidyselect)
+<span class="kw">library</span>(leaflet)
+
+<span class="co"># Load Data</span>
+pacific &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;pacific.csv&quot;</span>)
+atlantic &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;atlantic.csv&quot;</span>)</code></pre></div>
+<!--
+Hurricane Data
+-->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Clean Variables of Interest</span>
+<span class="co"># Change Name to a character and Max. Wind to a number</span>
+atlantic &lt;-<span class="st"> </span>atlantic %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Name=</span><span class="kw">as.character</span>(Name))
+
+<span class="co"># Change Name to a character and Max. Wind to a number</span>
+pacific&lt;-<span class="st"> </span>pacific %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Name=</span><span class="kw">as.character</span>(Name))
+
+<span class="co"># Join the datasets for Hurricane</span>
+hurricane &lt;-<span class="st"> </span>pacific %&gt;%
+<span class="st">  </span><span class="kw">full_join</span>(atlantic, <span class="dt">by=</span> <span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Maximum.Wind&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(Name, Date, Maximum.Wind)
+
+<span class="co"># Filter to include dates between 2000-2015 </span>
+<span class="co"># Formate Date &amp; Create Event</span>
+hurricane2&lt;-<span class="st"> </span>hurricane %&gt;%
+<span class="st">  </span><span class="kw">filter</span>( <span class="dv">20160101</span> &gt;=<span class="st"> </span>Date &amp;<span class="st"> </span>Date&gt;<span class="st"> </span><span class="dv">20000101</span>)%&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Date=</span><span class="kw">ymd</span>(Date), <span class="dt">Event=</span> <span class="st">&quot;Tropical Cyclone&quot;</span>)
+
+<span class="co"># Group Tropical Storms by name, and find average maximum wind speed in descending order</span>
+hurricane3 &lt;-<span class="st"> </span>hurricane2 %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Name) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">MW =</span> <span class="kw">mean</span>(Maximum.Wind))%&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(MW))%&gt;%
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">15</span>)</code></pre></div>
+<p><b> Wind Speeds Over Time: </b></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create Scatter Plot</span>
+<span class="kw">ggplot</span>(<span class="dt">data=</span> hurricane2, <span class="dt">mapping=</span> <span class="kw">aes</span>(<span class="dt">x=</span>Date, <span class="dt">y=</span> Maximum.Wind, <span class="dt">color=</span>Maximum.Wind))+
+<span class="st">  </span><span class="kw">geom_point</span>()+
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span> <span class="st">&quot;Tropical Storm&#39;s Average Maximum Wind Speeds in 15 Years&quot;</span>, <span class="dt">x=</span> <span class="st">&quot;Date&quot;</span>, <span class="dt">y=</span> <span class="st">&quot;Average Maximum Wind Speed&quot;</span>)</code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
+<p>Are There Trends in Tropical Storms’ Average Maximum Wind Speeds?</p>
+<p>The chart above, shows the tropical storms’ averaged maximum wind speed using the atlantic and pacific datasets<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> from NOAA. Looking at the tropical storm data globally over the 15-year period we made some observations which can be explained by previously known facts about tropical storms. For instance, the chart made with the datasets <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> from NOAA, shows a fairly consistent pattern of plumes separated by gaps of time between observations. These gaps can be explained by the fact that tropical cyclones only occur from June to November<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. One may note that in 2013 the range of average maximum wind speed was much smaller than the surrounding years; this could be attributed to the fact the Pacific and Atlantic hurricane seasons were both shorter than average in 2013<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. Another year of interest is 2015 because of its two storms with ridiculously high wind speeds, which can be noted on the chart made using NOAA’s dataset<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>. Hurricanes Danny and Joaquin were both huge category four hurricanes in the Atlantic that year; Danny is a notable storm because it only lasted for a few days before dissipating whereas Hurricane Joaquin spent nearly a month sweeping up the gulf coast<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Dunbar, Brian. “What Are Hurricanes?” NASA, NASA, 13 May 2015, <a href="http://www.nasa.gov/audience/forstudents/k-4/stories/nasa-knows/what-are-hurricanes-k4.html" class="uri">http://www.nasa.gov/audience/forstudents/k-4/stories/nasa-knows/what-are-hurricanes-k4.html</a>.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>NOAA. “Hurricanes and Typhoons, 1851-2014.” RSNA Pneumonia Detection Challenge | Kaggle, 20 Jan. 2017, <a href="http://www.kaggle.com/noaa/hurricane-database" class="uri">http://www.kaggle.com/noaa/hurricane-database</a> .<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>NOAA. “Hurricanes and Typhoons, 1851-2014.” RSNA Pneumonia Detection Challenge | Kaggle, National Hurricane Center, 20 Jan. 2017, <a href="http://www.kaggle.com/noaa/hurricane-database" class="uri">http://www.kaggle.com/noaa/hurricane-database</a>.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>NOAA. “Hurricanes and Typhoons, 1851-2014.” RSNA Pneumonia Detection Challenge | Kaggle, National Hurricane Center, 20 Jan. 2017, <a href="http://www.kaggle.com/noaa/hurricane-database" class="uri">http://www.kaggle.com/noaa/hurricane-database</a>.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>NOAA. “Tropical Cyclone Climatology.” Hurricane Preparedness - Hazards, NOAA’s National Weather Service, <a href="http://www.nhc.noaa.gov/climo/" class="uri">http://www.nhc.noaa.gov/climo/</a> .<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>NOAA National Centers for Environmental Information, State of the Climate: Hurricanes and Tropical Storms for Annual 2013, published online January 2014, retrieved on December 19, 2018 from <a href="https://www.ncdc.noaa.gov/sotc/tropical-cyclones/201313" class="uri">https://www.ncdc.noaa.gov/sotc/tropical-cyclones/201313</a>.<a href="#fnref6">↩</a></p></li>
+<li id="fn7"><p>NOAA. “Hurricanes and Typhoons, 1851-2014.” RSNA Pneumonia Detection Challenge | Kaggle, National Hurricane Center, 20 Jan. 2017, <a href="http://www.kaggle.com/noaa/hurricane-database" class="uri">http://www.kaggle.com/noaa/hurricane-database</a>.<a href="#fnref7">↩</a></p></li>
+<li id="fn8"><p>Dolace, Chris, and Quincy Vagell. “2015 Hurricane Season in Review: 11 Things We Will Remember.” The Weather Channel, The Weather Channel, 2015, <a href="https://weather.com/storms/hurricane/news/hurricane-season-2015-recap/" class="uri">https://weather.com/storms/hurricane/news/hurricane-season-2015-recap/</a>.<a href="#fnref8">↩</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

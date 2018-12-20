@@ -1,0 +1,143 @@
+---
+title: "Snapshot of Tropical Storms"
+author: "Leap Kasten & Isabel Zamudio-Moore"
+date: "Last updated on `r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    df_print: kable
+---
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Set R Markdown chunk defaults:
+knitr::opts_chunk$set(
+  echo = TRUE, message = FALSE, warning = FALSE, 
+  fig.width = 16/2, fig.height = 9/2
+)
+```
+
+<b> MAIN POST: </b>
+ 
+Do trends exist in the wind speeds of tropical storms in general, with storms that have the greatest average maximum wind speeds, and do tropical storms share dates with solar eclipses?
+
+In our search to find trends between storm seasons we decided to look at the storms with the greatest average maximum wind speeds over the fifteen-year period. We believed that we could find a commonality between these storms. If we could determine a trend in tropical storms with the greatest average maximum wind speeds of each year we might be able to deduce a trend in the overall nature of these tropical storms. In an attempt to discover factors that might have led to having more powerful storms we decided to look into solar eclipses because of their barring on the oceans’ tidal structure. If we could discover an overall trend in the tropical storms it would help illuminate how hurricane seasons are predicted.
+
+Tropical storms may cause varying amounts of damage depending on their  characteristics such as maximum wind speed. These tropical cyclones are made of a system of storms in rapid rotation which is characterized by a low-pressure center [eye], closed low-level atmospheric circulation, strong winds, and a spiral of thunderstorms that produce heavy rain ^[Dunbar, Brian. “What Are Hurricanes?” NASA, NASA, 13 May 2015, http://www.nasa.gov/audience/forstudents/k-4/stories/nasa-knows/what-are-hurricanes-k4.html.].
+
+Knowing the wind speed tells us which of these tropical storms is actually the storm known as a cyclone or hurricane; in fact, storms reaching wind speeds of at least 74 mph are classified as hurricanes and speeds go up from there on their five-category scale^[Dunbar, Brian. “What Are Hurricanes?” NASA, NASA, 13 May 2015, http://www.nasa.gov/audience/forstudents/k-4/stories/nasa-knows/what-are-hurricanes-k4.html.].
+
+Hurricanes and cyclones differ by region; for instance, if the weather phenomena takes place in the Indian Ocean, it is a cyclone ^[Dunbar, Brian. “What Are Hurricanes?” NASA, NASA, 13 May 2015, http://www.nasa.gov/audience/forstudents/k-4/stories/nasa-knows/what-are-hurricanes-k4.html.]. We decided to look at tropical storms around the globe and find storms with the highest maximum average wind speeds noting which tropical storms they were as well as the name of each storm.
+
+
+<!--
+Loading Packages & Data
+-->
+```{r}
+# Load Packages
+library(tidyverse)
+library(lubridate)
+library(stringr)
+library(tidyselect)
+library(leaflet)
+
+# Load Data
+solar <- read.csv("solar.csv")
+pacific <- read.csv("pacific.csv")
+atlantic <- read.csv("atlantic.csv")
+```
+
+<!--
+Eclipse Data
+-->
+```{R}
+# Clean Variables of Interest
+# Join the datasets of interest, rename variables, deltete "-" from date & select the variables of interest
+eclipse <- solar %>%
+  rename(Date=Calendar.Date) %>%
+  mutate( Date= str_replace_all((ymd(Date)), "-", "") ) %>%
+  select( Date)
+
+# Change date into a numeric value
+eclipse2<- eclipse %>%
+  mutate( Date= as.numeric(Date))
+
+# Filter dates range
+eclipse3<- eclipse2 %>%
+  filter( 20160101 >= Date & Date> 20000101)%>%
+  mutate( Date= ymd(Date), Event="Lunar Eclipse")
+```
+
+<!--
+Hurricane Data
+-->
+```{R}
+# Clean Variables of Interest
+# Change Name to a character and Max. Wind to a number
+atlantic <- atlantic %>%
+  mutate(Name=as.character(Name))
+
+# Change Name to a character and Max. Wind to a number
+pacific<- pacific %>%
+  mutate(Name=as.character(Name))
+
+# Join the datasets for Hurricane
+hurricane <- pacific %>%
+  full_join(atlantic, by= c("Name", "Date", "Maximum.Wind")) %>%
+  select(Name, Date, Maximum.Wind)
+
+# Filter to include dates between 2000-2015 
+# Formate Date & Create Event
+hurricane2<- hurricane %>%
+  filter( 20160101 >= Date & Date> 20000101)%>%
+  mutate(Date=ymd(Date), Event= "Tropical Cyclone")
+
+# Group Tropical Storms by name, and find average maximum wind speed in descending order
+hurricane3 <- hurricane2 %>%
+  group_by(Name) %>%
+  summarize(MW = mean(Maximum.Wind))%>%
+  arrange(desc(MW))%>%
+  slice(1:15)
+
+# Join Hurricane and Eclipse Data Frame
+Events <- hurricane2%>%
+  full_join(eclipse3, by= c("Event", "Date"))%>%
+  select(Date, Event)
+```
+
+<b> LARGEST AVERAGES: </b>
+```{r}
+# Create Bar Plot
+ggplot(data= hurricane3, mapping= aes(x= Name, y= MW))+
+  geom_bar(stat="identity")+
+  coord_flip()+
+  labs(title= "Names of Cyclones with the Highest Average Maximum Wind Speeds", y= "Average Maximum Wind Speed")
+```
+
+Which Tropical Storms Have the Highest Average Maximum Wind Speeds by Area?
+
+The chart above shows 15 of the tropical storms from 2000-2015 that attained the highest average wind speeds and covered the greatest area in terms of longitude and latitude. Using the dataset from NOAA^[NOAA. “Hurricanes and Typhoons, 1851-2014.” RSNA Pneumonia Detection Challenge | Kaggle, National Hurricane Center, 20 Jan. 2017, http://www.kaggle.com/noaa/hurricane-database.], it was found that only 13 of the tropical storms were noted as having an averaged maximum wind speed of 74 mph or greater!
+[Remember the required wind speed for a hurricane is 74 mph on the Beaufort Scale^[Beaufort, Francis. “Beaufort Wind Scale.” Storm Prediction Center, NOAA's National Weather Service, http://www.spc.noaa.gov/faq/tornado/beaufort.html.]. ] 
+Other facts of note became apparent by looking at this graph. For instance, again using the dataset from NOAA^[NOAA. “Hurricanes and Typhoons, 1851-2014.” RSNA Pneumonia Detection Challenge | Kaggle, National Hurricane Center, 20 Jan. 2017, http://www.kaggle.com/noaa/hurricane-database.], it showcases that Katrina averaged at a little over 74 mph while no tropical storm even reached 100 mph. 
+
+Hurricanes occur in specific seasons. In the Atlantic Ocean it is from early June to late October whereas in the Pacific the season tends to be longer starting in May and lasting through November^[NOAA. “Tropical Cyclone Climatology.” Hurricane Preparedness - Hazards, NOAA's National Weather Service, http://www.nhc.noaa.gov/climo/.]. These seasons do vary every year, in 2014 for example, the Atlantic season was from July 1st through October^[Wiltgen, Nick. “2014 Hurricane Season in Review: Eight Things We'll Remember.” The Weather Channel, The Weather Channel, Dec. 2014, http://weather.com/storms/hurricane/news/hurricane-season-2014-atlantic-pacific-recap.]. Similarly, the eclipse cycle changes each year^[Espenak, Fred. “PERIODICITY OF SOLAR ECLIPSES.” NASA, NASA, 2012, http://eclipse.gsfc.nasa.gov/SEsaros/SEperiodicity.html.]. It is common knowledge that the Moon affects Earth’s tides. We decided to then plot solar eclipses against the storm data by date using NASA’s dataset^[NASA. “Solar and Lunar Eclipses.” RSNA Pneumonia Detection Challenge | Kaggle, 9 Feb. 2017, http://www.kaggle.com/nasa/solar-eclipses.]. 
+
+
+<b> DATE BY DATE: </b>
+```{r}
+# Create Eclipses vs. Tropical Cyclones Bar Plot
+ggplot(Events, aes(x=Date, fill=Event))+
+  geom_bar() +
+  facet_wrap(~Event)+
+  labs(title= "Eclipses & Tropical Storms Over 15 Years", y= "Total Number of Events")
+```
+
+
+Do Tropical Cyclones occur around the time of Solar Eclipses?
+
+Examining recent behavior of tropical storms and solar eclipses might allow us to observe trends that exist and think about possible relationships between the two events. For instance, if these events occur around the same time or if on average one occurs before the other. Solar eclipses occur when the Earth, Moon, and Sun are in line so that the Earth is prevented from seeing the Sun in full force by the Moon ^[Freudenrich, Ph.D. Craig. “How Solar Eclipses Work.” HowStuffWorks Science, HowStuffWorks, 28 June 2018, http://science.howstuffworks.com/solar-eclipse1.htm.]. 
+
+We decided to graph solar eclipses against the storms because tropical wind storms, or any funnel storm, is powered by bodies of water by picking up the water vapor. We thought the chart above might show if there exists some correlation between stronger storms and solar eclipses because of the effect the eclipses have on the oceans’ tides. When the Moon and Sun a line on one side of the Earth the tides become more drastic which we thought may affect the tropical storms but unfortunately it is inconclusive. 
+
